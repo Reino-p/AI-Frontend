@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug Frontend (SvelteKit)",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "pnpm",
+        "runtimeArgs": ["run", "dev"],
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal",
+        "skipFiles": ["<node_internals>/**"],
+        "autoAttachChildProcesses": true,
+        "env": { "NODE_ENV": "development" }
+      }
+    ]
+  }

@@ -1,11 +1,16 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
-
-	let { children } = $props();
+  import '../app.css';
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<nav class="nav">
+  <a href="/">Home</a>
+  <a href="/plan">Plan</a>
+  <a href="/seed">Seed DB</a>
+  <a href="/rag">RAG (soon)</a>
+</nav>
 
-{@render children?.()}
+<main class="container">
+  <slot />
+</main>
+
+<footer class="footer">Agentic Tutor • SvelteKit + FastAPI</footer>

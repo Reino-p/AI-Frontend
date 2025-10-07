@@ -1,23 +1,14 @@
 /* ===== GitHub Dark palette ===== */
 :root {
-       --bg: #0d1117;
-       /* page bg */
-       --fg: #c9d1d9;
-       /* text */
-       --muted: #8b949e;
-       /* secondary text */
-       --border: #30363d;
-       /* borders */
-       --card: #161b22;
-       /* panels/cards */
-       --card-hover: #1b2230;
-       /* hover bg */
-       --accent: #2f81f7;
-       /* links/primary */
-       --accent-hover: #1f6feb;
-       /* link hover */
-       --badge-bg: #1f6feb1a;
-       /* subtle blue tint */
+       --bg: #0d1117;              /* page bg */
+       --fg: #c9d1d9;              /* text */
+       --muted: #8b949e;           /* secondary text */
+       --border: #30363d;          /* borders */
+       --card: #161b22;            /* panels/cards */
+       --card-hover: #1b2230;      /* hover bg */
+       --accent: #2f81f7;          /* links/primary */
+       --accent-hover: #1f6feb;    /* link hover */
+       --badge-bg: #1f6feb1a;      /* subtle blue tint */
        --badge-border: #1f6feb66;
        --btn-bg: #21262d;
        --btn-border: #30363d;
@@ -259,20 +250,15 @@ small {
 /* Override link styling for dashboard cards */
 .grid a.card {
        color: var(--fg);
-       /* normal text color, not blue */
        text-decoration: none;
-       /* no underline */
 }
 
 .grid a.card:hover {
        background: var(--card-hover);
        color: var(--fg);
-       /* keep same color on hover */
        text-decoration: none;
-       /* still no underline */
 }
 
-/* optional: make h3s inside cards look cleaner */
 .grid a.card h3 {
        color: var(--fg);
        margin-top: 0;
@@ -281,4 +267,77 @@ small {
 .grid a.card p,
 .grid a.card small {
        color: var(--muted);
+}
+
+/*Task numbering*/
+.task-title::first-letter {
+       font-weight: 700;
+}
+
+.task-title {
+       display: flex;
+       align-items: center;
+       gap: .4rem;
+}
+
+.task-title::before {
+       content: attr(data-index);
+       display: none;
+}
+
+/* Skeletons */
+.skel-card {
+       border: 1px solid var(--border);
+       border-radius: .5rem;
+       padding: 1rem;
+       background: var(--card);
+}
+
+.skel-line {
+       height: 12px;
+       border-radius: 6px;
+       background: linear-gradient(90deg,
+                     rgba(255, 255, 255, 0.04) 0%,
+                     rgba(255, 255, 255, 0.10) 50%,
+                     rgba(255, 255, 255, 0.04) 100%);
+       animation: skel 1.2s infinite linear;
+}
+
+.skel-title {
+       height: 16px;
+       width: 60%;
+       margin-bottom: .6rem;
+}
+
+.skel-badge {
+       height: 20px;
+       width: 70px;
+       border-radius: 999px;
+}
+
+.skel-meta {
+       display: flex;
+       gap: .5rem;
+       flex-wrap: wrap;
+       align-items: center;
+}
+
+.skel-gap {
+       height: 8px;
+}
+
+.skel-grid {
+       display: grid;
+       gap: 1rem;
+       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+@keyframes skel {
+       0% {
+              background-position: -200px 0;
+       }
+
+       100% {
+              background-position: calc(200px + 100%) 0;
+       }
 }

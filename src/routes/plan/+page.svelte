@@ -38,12 +38,44 @@
 
 <br><br>
   
-{#if result}
+{#if loading}
+  <!-- Milestones skeleton -->
+  <div class="skel-card" aria-hidden="true">
+    <h3>Milestones</h3>
+    <div class="skel-gap"></div>
+    <div class="skel-line" style="width: 85%;"></div>
+    <div class="skel-gap"></div>
+    <div class="skel-line" style="width: 72%;"></div>
+    <div class="skel-gap"></div>
+    <div class="skel-line" style="width: 64%;"></div>
+  </div>
+
+  <br />
+
+  <!-- Tasks skeleton grid -->
+  <div class="skel-card" aria-hidden="true">
+    <h3>Tasks</h3>
+    <div class="skel-grid" style="margin-top:.6rem">
+      {#each Array(6) as _, i}
+        <div class="skel-card">
+          <div class="skel-title skel-line"></div>
+          <div class="skel-meta">
+            <div class="skel-badge skel-line" style="width:80px;"></div>
+            <div class="skel-line" style="width:60px;"></div>
+            <div class="skel-line" style="width:90px;"></div>
+          </div>
+          <div class="skel-gap"></div>
+          <div class="skel-line" style="width: 40%; height: 10px;"></div>
+        </div>
+      {/each}
+    </div>
+  </div>
+{:else if result}
   <div class="card">
     <h3>Milestones</h3>
     <ul>
       {#each result.milestones as m}
-        <li>• {m}</li>
+        <li>{m}</li>
       {/each}
     </ul>
   </div>
@@ -53,9 +85,9 @@
   <div class="card">
     <h3>Tasks</h3>
     <div class="grid-auto">
-      {#each result.tasks as t}
+      {#each result.tasks as t, i}
         <div class="task-card">
-          <h4 class="task-title">{t.title}</h4>
+          <h4 class="task-title">{i + 1}. {t.title}</h4>
           <div class="task-meta">
             <span class="badge">{t.type}</span>
             <span>{t.est_minutes} min</span>

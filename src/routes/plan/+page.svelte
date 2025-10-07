@@ -8,9 +8,9 @@
 	let error: string | null = null;
 	let loading = false;
 
-  let saveName = 'My SQL Plan';
-  let saveOk: string | null = null;
-  let saveErr: string | null = null;
+	let saveName = 'My SQL Plan';
+	let saveOk: string | null = null;
+	let saveErr: string | null = null;
 
 	async function submit() {
 		error = null;
@@ -28,25 +28,29 @@
 		}
 	}
 
-  async function savePlan() {
-    if (!result) return;
-    saveOk = null; saveErr = null;
-    try {
-      const payload = {
-        name: saveName,
-        goal, level, minutes, deadline,
-        milestones: result.milestones,
-        tasks: result.tasks
-      };
-      const saved = await api('/plans', {
-        method: 'POST',
-        body: JSON.stringify(payload)
-      });
-      saveOk = `Saved as "${saved.name}" (id: ${saved.id})`;
-    } catch (e: any) {
-      saveErr = e?.message ?? 'Save failed';
-    }
-  }
+	async function savePlan() {
+		if (!result) return;
+		saveOk = null;
+		saveErr = null;
+		try {
+			const payload = {
+				name: saveName,
+				goal,
+				level,
+				minutes,
+				deadline,
+				milestones: result.milestones,
+				tasks: result.tasks
+			};
+			const saved = await api('/plans', {
+				method: 'POST',
+				body: JSON.stringify(payload)
+			});
+			saveOk = `Saved as "${saved.name}" (id: ${saved.id})`;
+		} catch (e: any) {
+			saveErr = e?.message ?? 'Save failed';
+		}
+	}
 </script>
 
 <h2>Generate Plan</h2>
@@ -114,9 +118,8 @@
 			{/each}
 		</div>
 	</div>
-
 {:else if result}
-  <!-- Milestone card -->
+	<!-- Milestone card -->
 	<div class="card">
 		<h3>Milestones</h3>
 		<ul>
@@ -128,7 +131,7 @@
 
 	<br />
 
-  <!-- Tasks skeleton grid -->
+	<!-- Tasks skeleton grid -->
 	<div class="card">
 		<h3>Tasks</h3>
 		<div class="grid-auto">
@@ -153,18 +156,19 @@
 		</div>
 	</div>
 
-  <br />
+	<br />
 
-  <!-- Saving a plan -->
-  <div class="card">
-    <h3>Save this plan</h3>
-    <div class="row">
-      <label>Plan name
-        <input class="input" bind:value={saveName} placeholder="e.g. SQL in 4 weeks" />
-      </label>
-    </div>
-    <button class="btn primary" on:click={savePlan}>Save Plan</button>
-    {#if saveOk}<p class="alert success" style="margin-top:.6rem">{saveOk}</p>{/if}
-    {#if saveErr}<p class="alert error" style="margin-top:.6rem">{saveErr}</p>{/if}
-  </div>
+	<!-- Saving a plan -->
+	<div class="card">
+		<h3>Save this plan</h3>
+		<div class="row">
+			<label
+				>Plan name
+				<input class="input" bind:value={saveName} placeholder="e.g. SQL in 4 weeks" />
+			</label>
+		</div>
+		<button class="btn primary" on:click={savePlan}>Save Plan</button>
+		{#if saveOk}<p class="alert success" style="margin-top:.6rem">{saveOk}</p>{/if}
+		{#if saveErr}<p class="alert error" style="margin-top:.6rem">{saveErr}</p>{/if}
+	</div>
 {/if}

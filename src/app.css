@@ -1,14 +1,23 @@
 /* ===== GitHub Dark palette ===== */
 :root {
-       --bg: #0d1117;              /* page bg */
-       --fg: #c9d1d9;              /* text */
-       --muted: #8b949e;           /* secondary text */
-       --border: #30363d;          /* borders */
-       --card: #161b22;            /* panels/cards */
-       --card-hover: #1b2230;      /* hover bg */
-       --accent: #2f81f7;          /* links/primary */
-       --accent-hover: #1f6feb;    /* link hover */
-       --badge-bg: #1f6feb1a;      /* subtle blue tint */
+       --bg: #0d1117;
+       /* page bg */
+       --fg: #c9d1d9;
+       /* text */
+       --muted: #8b949e;
+       /* secondary text */
+       --border: #30363d;
+       /* borders */
+       --card: #161b22;
+       /* panels/cards */
+       --card-hover: #1b2230;
+       /* hover bg */
+       --accent: #2f81f7;
+       /* links/primary */
+       --accent-hover: #1f6feb;
+       /* link hover */
+       --badge-bg: #1f6feb1a;
+       /* subtle blue tint */
        --badge-border: #1f6feb66;
        --btn-bg: #21262d;
        --btn-border: #30363d;
@@ -199,8 +208,8 @@ small {
        box-shadow: none;
        cursor: pointer;
        font-weight: 500;
-       text-decoration: none; /* no underline */
-       width: 100%;           /* make entire button area clickable */
+       text-decoration: none;
+       width: 100%;
        transition: filter 0.15s ease;
 }
 
@@ -348,8 +357,8 @@ small {
 /*disabled button*/
 .btn[disabled],
 .btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  filter: none;
-  pointer-events: none;
+       opacity: 0.6;
+       cursor: not-allowed;
+       filter: none;
+       pointer-events: none;
 }

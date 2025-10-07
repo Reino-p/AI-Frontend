@@ -1,17 +1,17 @@
 <script lang="ts">
-  import '../app.css';
+	import '../app.css';
 </script>
 
 <nav class="nav">
-  <a href="/">Home</a>
-  <a href="/plan">Plan</a>
-  <a href="/plans">Saved Plans</a>
-  <a href="/seed">Seed DB</a>
-  <a href="/rag">RAG (soon)</a>
+	<a href="/">Home</a>
+	<a href="/plan">Plan</a>
+	<a href="/plans">Saved Plans</a>
+	<a href="/seed">Seed DB</a>
+	<a href="/rag">RAG (soon)</a>
 </nav>
 
 <main class="container">
-  <slot />
+	<slot />
 </main>
 
 <footer class="footer">Agentic Tutor • SvelteKit + FastAPI</footer>

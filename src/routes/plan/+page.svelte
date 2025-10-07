@@ -8,7 +8,7 @@
 	let error: string | null = null;
 	let loading = false;
 
-	let saveName = 'My SQL Plan';
+	let saveName = '';
 	let saveOk: string | null = null;
 	let saveErr: string | null = null;
 

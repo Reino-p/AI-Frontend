@@ -1,19 +1,284 @@
-:root { --bg:#0b1020; --fg:#e6e8f0; --accent:#4f46e5; --muted:#a3a7b7; }
-* { box-sizing: border-box; }
-body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans';
-       background:var(--bg); color:var(--fg); }
-a { color: var(--fg); text-decoration: none; }
-.nav { display:flex; gap:1rem; padding:1rem; border-bottom:1px solid #1e2a4a; position:sticky; top:0;
-       background:rgba(11,16,32,.85); backdrop-filter: blur(6px); }
-.nav a { padding:.45rem .75rem; border-radius:.5rem; }
-.nav a:hover { background:#1a2150; }
-.container { max-width:900px; margin:0 auto; padding:1rem; }
-.grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-.card { border:1px solid #1e2a4a; border-radius:.8rem; padding:1rem; background:#1d2b5d; }
-.card h3 { margin:.2rem 0 .6rem; }
-.btn { background:var(--accent); border:none; color:white; padding:.55rem .9rem; border-radius:.6rem; cursor:pointer; }
-.btn:hover { filter:brightness(1.05); }
-.input, .textarea { width:100%; padding:.55rem .7rem; border-radius:.6rem; border:1px solid #1e2a4a; background:#0b1020; color:var(--fg); }
-.row { display:grid; gap:.6rem; margin:.8rem 0; }
-.footer { opacity:.6; font-size:.9rem; padding:1rem; text-align:center; border-top:1px solid #1e2a4a; margin-top:2rem; }
-small { color:var(--muted); }
+/* ===== GitHub Dark palette ===== */
+:root {
+       --bg: #0d1117;
+       /* page bg */
+       --fg: #c9d1d9;
+       /* text */
+       --muted: #8b949e;
+       /* secondary text */
+       --border: #30363d;
+       /* borders */
+       --card: #161b22;
+       /* panels/cards */
+       --card-hover: #1b2230;
+       /* hover bg */
+       --accent: #2f81f7;
+       /* links/primary */
+       --accent-hover: #1f6feb;
+       /* link hover */
+       --badge-bg: #1f6feb1a;
+       /* subtle blue tint */
+       --badge-border: #1f6feb66;
+       --btn-bg: #21262d;
+       --btn-border: #30363d;
+       --btn-hover: #30363d;
+       --success: #238636;
+}
+
+* {
+       box-sizing: border-box;
+}
+
+body {
+       margin: 0;
+       font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans';
+       background: var(--bg);
+       color: var(--fg);
+}
+
+/* Links */
+a {
+       color: var(--accent);
+       text-decoration: none;
+}
+
+a:hover {
+       color: var(--accent-hover);
+       text-decoration: underline;
+}
+
+/* Top nav */
+.nav {
+       display: flex;
+       gap: 1rem;
+       padding: .75rem 1rem;
+       border-bottom: 1px solid var(--border);
+       position: sticky;
+       top: 0;
+       background: rgba(13, 17, 23, .85);
+       backdrop-filter: blur(6px);
+}
+
+.nav a {
+       color: var(--fg);
+       padding: .35rem .6rem;
+       border-radius: .375rem;
+}
+
+.nav a:hover {
+       background: var(--card-hover);
+       text-decoration: none;
+}
+
+/* Layout */
+.container {
+       max-width: 900px;
+       margin: 0 auto;
+       padding: 1rem;
+}
+
+.grid {
+       display: grid;
+       gap: 1rem;
+       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Cards */
+.card {
+       border: 1px solid var(--border);
+       border-radius: .5rem;
+       padding: 1rem;
+       background: var(--card);
+}
+
+.card:hover {
+       background: var(--card-hover);
+}
+
+.card h3 {
+       margin: .2rem 0 .6rem;
+}
+
+.task-card {
+       /* for each task */
+       border: 1px solid var(--border);
+       border-radius: .5rem;
+       padding: .9rem;
+       background: var(--card);
+}
+
+/* Buttons (GitHub-ish) */
+.btn {
+       background: var(--btn-bg);
+       border: 1px solid var(--btn-border);
+       color: var(--fg);
+       padding: .5rem .8rem;
+       border-radius: .375rem;
+       cursor: pointer;
+}
+
+.btn:hover {
+       background: var(--btn-hover);
+}
+
+.btn.primary {
+       background: var(--accent);
+       border-color: var(--accent);
+       color: #fff;
+}
+
+.btn.primary:hover {
+       background: var(--accent-hover);
+}
+
+/* Inputs */
+.input,
+.textarea,
+.select {
+       width: 100%;
+       padding: .5rem .65rem;
+       border-radius: .375rem;
+       border: 1px solid var(--border);
+       background: var(--bg);
+       color: var(--fg);
+}
+
+.row {
+       display: grid;
+       gap: .6rem;
+       margin: .8rem 0;
+}
+
+/* Footer */
+.footer {
+       opacity: .7;
+       font-size: .9rem;
+       padding: 1rem;
+       text-align: center;
+       border-top: 1px solid var(--border);
+       margin-top: 2rem;
+}
+
+small {
+       color: var(--muted);
+}
+
+/* Badges & meta */
+.badge {
+       font-size: .8rem;
+       padding: .15rem .45rem;
+       border-radius: .5rem;
+       border: 1px solid var(--badge-border);
+       background: var(--badge-bg);
+       color: var(--fg);
+}
+
+.grid-auto {
+       display: grid;
+       gap: 1rem;
+       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.task-title {
+       margin: 0 0 .35rem;
+       font-weight: 600;
+}
+
+.task-meta {
+       display: flex;
+       gap: .5rem;
+       flex-wrap: wrap;
+       color: var(--muted);
+       font-size: .9rem;
+}
+
+.sep {
+       opacity: .5;
+}
+
+/* Resource button (GitHub success style) */
+.resource_btn {
+       display: inline-block;
+       border: 1px solid var(--btn-border);
+       border-radius: .375rem;
+       background: var(--success);
+       color: #fff;
+       padding: .4rem .6rem;
+       box-shadow: none;
+}
+
+.resource_btn a {
+       color: #fff;
+       text-decoration: none;
+}
+
+.resource_btn:hover {
+       filter: brightness(1.05);
+}
+
+/* status & alerts */
+.status {
+       display: inline-flex;
+       align-items: center;
+       gap: .4rem;
+       font-size: .9rem;
+       padding: .25rem .5rem;
+       border-radius: .5rem;
+       border: 1px solid var(--border);
+       background: var(--card);
+}
+
+.status.ok {
+       border-color: #238636;
+       color: #3fb950;
+}
+
+.status.down {
+       border-color: #f85149;
+       color: #ff7b72;
+}
+
+.alert {
+       border: 1px solid var(--border);
+       border-radius: .5rem;
+       padding: .7rem .9rem;
+       background: var(--card);
+}
+
+.alert.success {
+       border-color: #238636;
+       background: rgba(35, 134, 54, .15);
+}
+
+.alert.error {
+       border-color: #f85149;
+       background: rgba(248, 81, 73, .12);
+       color: #ff7b72;
+}
+
+/* Override link styling for dashboard cards */
+.grid a.card {
+       color: var(--fg);
+       /* normal text color, not blue */
+       text-decoration: none;
+       /* no underline */
+}
+
+.grid a.card:hover {
+       background: var(--card-hover);
+       color: var(--fg);
+       /* keep same color on hover */
+       text-decoration: none;
+       /* still no underline */
+}
+
+/* optional: make h3s inside cards look cleaner */
+.grid a.card h3 {
+       color: var(--fg);
+       margin-top: 0;
+}
+
+.grid a.card p,
+.grid a.card small {
+       color: var(--muted);
+}

@@ -190,21 +190,24 @@ small {
 /* Resource button (GitHub success style) */
 .resource_btn {
        display: inline-block;
+       text-align: center;
        border: 1px solid var(--btn-border);
        border-radius: .375rem;
        background: var(--success);
        color: #fff;
-       padding: .4rem .6rem;
+       padding: .45rem .75rem;
        box-shadow: none;
-}
-
-.resource_btn a {
-       color: #fff;
-       text-decoration: none;
+       cursor: pointer;
+       font-weight: 500;
+       text-decoration: none; /* no underline */
+       width: 100%;           /* make entire button area clickable */
+       transition: filter 0.15s ease;
 }
 
 .resource_btn:hover {
        filter: brightness(1.05);
+       text-decoration: none;
+       color: #fff;
 }
 
 /* status & alerts */

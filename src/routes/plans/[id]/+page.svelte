@@ -16,13 +16,12 @@
 {#if plan}
 	<div class="card">
 		<h2>{plan.name}</h2>
-		<p>
-			<small>Goal:</small>
-			{plan.goal} • <small>Level:</small>
-			{plan.level} • <small>Minutes/day:</small>
-			{plan.minutes} • <small>Deadline:</small>
-			{plan.deadline}
-		</p>
+		<pre>
+        <small class="goalColor">Goal →</small>           {plan.goal} <br />
+        <small class="levelColor">Level →</small>          {plan.level} <br />
+        <small class="timeColor">Minutes/day →</small>    {plan.minutes} mins <br />
+        <small class="deadlineColor">Deadline →</small>       {plan.deadline} <br />
+        </pre>
 	</div>
 
 	<br />
@@ -64,3 +63,67 @@
 {:else}
 	<div class="skel-card"><div class="skel-line skel-title"></div></div>
 {/if}
+
+<style>
+	:root {
+		--border: #30363d;
+		/* borders */
+		--card: #161b22;
+		/* panels/cards */
+		--goal: #238636;
+		--level: #868123;
+		--time: #237286;
+		--deadline: #862332;
+	}
+
+	.goalColor {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--goal);
+		background: var(--card);
+		color: var(--goal);
+		margin-bottom: 0.2rem;
+	}
+
+	.levelColor {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--level);
+		background: var(--card);
+		color: var(--level);
+		margin-bottom: 0.2rem;
+	}
+
+	.timeColor {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--time);
+		background: var(--card);
+		color: var(--time);
+		margin-bottom: 0.2rem;
+	}
+
+	.deadlineColor {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		padding: 0.25rem 0.5rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--deadline);
+		background: var(--card);
+		color: var(--deadline);
+	}
+</style>

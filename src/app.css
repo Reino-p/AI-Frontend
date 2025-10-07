@@ -341,3 +341,12 @@ small {
               background-position: calc(200px + 100%) 0;
        }
 }
+
+/*disabled button*/
+.btn[disabled],
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: none;
+  pointer-events: none;
+}

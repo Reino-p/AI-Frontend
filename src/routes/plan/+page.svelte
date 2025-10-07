@@ -29,7 +29,7 @@
   <div class="row"><label>Level<input class="input" bind:value={level} /></label></div>
   <div class="row"><label>Minutes/day<input class="input" type="number" bind:value={minutes} min="10" max="240" /></label></div>
   <div class="row"><label>Deadline<input class="input" bind:value={deadline} placeholder="e.g. in 4 weeks or 2025-11-30" /></label></div>
-  <button class="btn primary" on:click={submit} disabled={loading}>
+  <button class="btn primary" on:click={!loading ? submit : undefined} disabled={loading}>
     {loading ? 'Generating…' : 'Generate'}
   </button>
 </div>

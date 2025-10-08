@@ -1,13 +1,31 @@
 export const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-export async function api<T = any>(path: string, init: RequestInit = {}): Promise<T> {
+type ApiOptions = {
+  expectJson?: boolean; // set false for 204/empty bodies
+};
+
+export async function api<T = any>(
+  path: string,
+  init: RequestInit = {},
+  opts: ApiOptions = {}
+): Promise<T> {
   const res = await fetch(`${API}${path}`, {
     headers: { 'Content-Type': 'application/json', ...(init.headers || {}) },
     ...init
   });
+
   if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(text || `HTTP ${res.status}`);
+    const errText = await res.text().catch(() => '');
+    throw new Error(errText || `HTTP ${res.status}`);
   }
-  return res.json() as Promise<T>;
+
+  // If caller says "no JSON expected" or it's a 204, just return void
+  if (opts.expectJson === false || res.status === 204) {
+    // @ts-expect-error allow void
+    return undefined;
+  }
+
+  // Tolerate empty body even on 200
+  const text = await res.text();
+  return (text ? JSON.parse(text) : undefined) as T;
 }

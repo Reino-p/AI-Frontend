@@ -70,10 +70,10 @@
 		/* borders */
 		--card: #161b22;
 		/* panels/cards */
-		--goal: #238636;
-		--level: #868123;
-		--time: #237286;
-		--deadline: #862332;
+		--goal: #1fc13f;
+		--level: #d3ca2e;
+		--time: #1eb9df;
+		--deadline: #d3203b;
 	}
 
 	.goalColor {

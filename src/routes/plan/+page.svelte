@@ -46,7 +46,7 @@
 				method: 'POST',
 				body: JSON.stringify(payload)
 			});
-			saveOk = `Saved as "${saved.name}" (id: ${saved.id})`;
+			saveOk = `Saved as "${saved.name}"`;
 		} catch (e: any) {
 			saveErr = e?.message ?? 'Save failed';
 		}

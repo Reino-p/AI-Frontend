@@ -6,9 +6,9 @@
 <p style="color: var(--muted)">
 	Agentic Tutor is your personal study copilot. It creates a tailored learning plan for your goal,
 	schedules realistic tasks against your timeline, and lets you save and revisit plans any time.
-	Coming soon: search across your own docs with AI-powered RAG.
 </p> <br>
 
+<h2>Choose what to do next:</h2>
 <div class="grid" style="margin-top:1rem">
 	<a class="card" href="/plan">
 		<h3>Generate Plan →</h3>
@@ -19,15 +19,18 @@
 		<h3>Saved Plans →</h3>
 		<p>View or manage the plans you’ve saved for later.</p>
 	</a>
+</div>
 
+<h2>Admin System functionlity:</h2>
+<div class="grid" style="margin-top:1rem">
 	<a class="card" href="/seed">
 		<h3>Seed Database →</h3>
-		<p>Insert sample content for testing (developer utility).</p>
+		<p>Insert sample content for testing (admin utility).</p>
 	</a>
 
 	<a class="card" href="/rag">
 		<h3>RAG Search →</h3>
-		<p>Ask questions across your uploaded notes and resources.</p>
+		<p>Ask questions across your uploaded notes and resources (admin utility).</p>
 	</a>
 </div>
 <br>

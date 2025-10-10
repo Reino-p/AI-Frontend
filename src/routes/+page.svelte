@@ -26,7 +26,7 @@
 	</a>
 
 	<a class="card" href="/rag">
-		<h3>RAG Search (soon) →</h3>
+		<h3>RAG Search →</h3>
 		<p>Ask questions across your uploaded notes and resources.</p>
 	</a>
 </div>

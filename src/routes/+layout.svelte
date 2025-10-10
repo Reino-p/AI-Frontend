@@ -21,7 +21,7 @@
 		<a href="/plan">Plan</a>
 		<a href="/plans">Saved Plans</a>
 		<a href="/seed">Seed DB</a>
-		<a href="/rag">RAG (soon)</a>
+		<a href="/rag">RAG Search</a>
 	</div>
 
 	<div class="nav-right">

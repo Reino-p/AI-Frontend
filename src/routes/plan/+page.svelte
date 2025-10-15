@@ -13,7 +13,7 @@
 	let saveErr: string | null = null;
   
 	// --- Thinking UI state ---
-	let showThinking = true;           // default to open; set false if you want collapsed by default
+	let showThinking = true;
 	const steps = [
 	  'Analyzing goal & level',
 	  'Planning milestones',

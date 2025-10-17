@@ -29,6 +29,15 @@
 	// per-task action guard
 	let actingOn: number | null = null;
 
+	// Reflection modal state
+	let showReflect = false;
+	let targetTask: TodayTask | null = null;
+
+	let confidence = 3;
+	let blockers = '';
+	let took_minutes: number | '' = '';
+	let want_more_practice = false;
+
 	function mmss(n: number) {
 		const m = Math.floor(n / 60)
 			.toString()
@@ -74,6 +83,54 @@
 	async function hardStop() {
 		pauseTimer();
 		await endSession();
+	}
+
+	function openReflect(t: TodayTask) {
+		targetTask = t;
+		confidence = 3;
+		blockers = '';
+		took_minutes = '';
+		want_more_practice = false;
+		showReflect = true;
+	}
+
+	function closeReflect() {
+		showReflect = false;
+		targetTask = null;
+	}
+
+	async function submitReflection() {
+		if (!targetTask) return;
+		try {
+			actingOn = targetTask.id;
+			await ensureSession();
+            const completedId = targetTask.id;
+			await api(
+				`/tasks/${targetTask.id}/complete`,
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						outcome: 'done',
+						rating: 5,
+						session_id: sessionId,
+						reflection: {
+							confidence,
+							blockers: blockers || null,
+							took_minutes: took_minutes === '' ? null : Number(took_minutes),
+							want_more_practice
+						}
+					})
+				},
+				{ expectJson: true } // we now return actions/tips if you want to toast them
+			);
+            tasks = tasks.filter((x) => x.id !== completedId);
+			closeReflect();
+			await load();
+		} catch (e: any) {
+			error = e?.message ?? 'Complete failed';
+		} finally {
+			actingOn = null;
+		}
 	}
 
 	async function load() {
@@ -218,13 +275,80 @@
 					</div>
 				{/if}
 				<div class="actions">
-					<button class="btn primary" on:click={() => markDone(t)} disabled={actingOn === t.id}
+					<button class="btn primary" on:click={() => openReflect(t)} disabled={actingOn === t.id}
 						>Mark done</button
 					>
 					<button class="btn" on:click={() => skip(t)} disabled={actingOn === t.id}>Skip</button>
 				</div>
 			</div>
 		{/each}
+	</div>
+{/if}
+
+<svelte:window
+	on:keydown={(e) => {
+		if (showReflect && e.key === 'Escape') closeReflect();
+	}}
+/>
+
+<!-- Reflection Modal -->
+{#if showReflect}
+	<!-- Backdrop acts like a button: focusable + keyboard-close -->
+	<div
+		class="modal-backdrop"
+		role="button"
+		tabindex="0"
+		aria-label="Close dialog"
+		on:click|self={closeReflect}
+		on:keydown={(e) => {
+			// allow Enter/Space to close when the backdrop has focus
+			if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) {
+				e.preventDefault();
+				closeReflect();
+			}
+		}}
+	>
+		<div class="modal" role="dialog" aria-modal="true" aria-labelledby="reflectTitle">
+			<div class="modal-head">
+				<h3 id="reflectTitle">Quick reflection</h3>
+				<button class="icon-btn" on:click={closeReflect} aria-label="Close dialog">×</button>
+			</div>
+
+			<p style="margin-top:.25rem"><small>This helps tailor your plan.</small></p>
+
+			<div class="row" style="margin-top:.6rem">
+				<label>
+					Confidence (1-5)
+					<input class="input" type="number" min="1" max="5" bind:value={confidence} />
+				</label>
+			</div>
+
+			<div class="row">
+				<label>
+					Blockers (optional)
+					<input class="input" placeholder="What made this hard?" bind:value={blockers} />
+				</label>
+			</div>
+
+			<div class="row">
+				<label>
+					Time spent (mins, optional)
+					<input class="input" type="number" min="1" max="600" bind:value={took_minutes} />
+				</label>
+			</div>
+
+			<div class="row" style="display:flex; align-items:center; gap:.5rem">
+				<input id="more" type="checkbox" bind:checked={want_more_practice} />
+				<label for="more">I want more practice like this</label>
+			</div>
+
+			<div style="display:flex; gap:.5rem; justify-content:flex-end; margin-top:.6rem">
+				<button class="btn" on:click={closeReflect} disabled={actingOn !== null}>Cancel</button>
+				<button class="btn primary" on:click={submitReflection} disabled={actingOn !== null}>
+					Save & Complete
+				</button>
+			</div>
+		</div>
 	</div>
 {/if}
 
@@ -271,6 +395,39 @@
 		border-left: 1px solid var(--border);
 	}
 	.seg-btn.active {
+		background: var(--btn-hover);
+	}
+	.modal-backdrop {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.5);
+		display: grid;
+		place-items: center;
+		z-index: 50;
+	}
+	.modal {
+		width: min(520px, 92vw);
+		background: var(--card);
+		border: 1px solid var(--border);
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
+	.modal-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+	.icon-btn {
+		background: transparent;
+		border: 1px solid var(--border);
+		color: var(--fg);
+		border-radius: 0.375rem;
+		padding: 0.1rem 0.45rem;
+		line-height: 1;
+		cursor: pointer;
+	}
+	.icon-btn:hover {
 		background: var(--btn-hover);
 	}
 </style>

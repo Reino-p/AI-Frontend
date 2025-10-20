@@ -38,7 +38,7 @@
 	<div class="nav-left">
 	  <a href="/" class="brand">
 		<img src={logoDark} alt="Agentic Tutor logo" class="logo" />
-		<span class="brand-text">Agentic Tutor</span>
+		<span class="brand-text">Nexus Mind</span>
 	  </a>
   
 	  <!-- Desktop links -->

@@ -2,10 +2,13 @@
   //script tag
 </script>
 
-<h1>Agentic Tutor</h1>
+<h1>Nexus Mind</h1>
 <p style="color: var(--muted)">
-	Agentic Tutor is your personal study copilot. It creates a tailored learning plan for your goal,
+	Nexus Mind is your personal study copilot. It creates a tailored learning plan for your goal,
 	schedules realistic tasks against your timeline, and lets you save and revisit plans any time.
+	It also adjusts your plan according to your reflection on tasks to scale the plan based on 
+	your experience with the current plan. Nexus also provides you the ability to start a focus 
+	session where you can do your daily tasks in a focused environment.
 </p> <br>
 
 <h2>Choose what to do next:</h2>
